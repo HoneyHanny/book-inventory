@@ -1,12 +1,14 @@
 #ifndef NODE_H
 #define NODE_H
 
-typedef struct {
+#include "book.h"
+
+typedef struct tNode {
 	Book book;
-	Node* next;
-	Node* prev;
+	struct tNode* next;
+	struct tNode* prev;
 } Node;
 
-Node NewNode(Book book);
+Node* NewNode(Book book);
 
 #endif // NODE_H

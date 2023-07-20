@@ -1,27 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
+#include "file.h"
+#include "result.h"
 #include "list.h"
 #include "book.h"
 #include "tools.h"
 
+
+// TODO: (7/13/2023 7:31:11 PM) add symbols in telescope
+// https://github.com/nvim-telescope/telescope-symbols.nvim
+
+// ? How to make background transparent?
 int main(void) {
 
+	// TODO: (7/13/2023 3:28:22 PM) make randomizer for id
+	srand(time(0));
+
+	// TODO: (6/21/2023 11:16:28 PM) read from file and add to list
+	
+	Book book, updatedBook;
+	int id;
+	char* search = NULL;
 	char opt;
 	List list = {
-		head = NULL;
-		tail = NULL;
-		count = 0;
+		NULL,
+		NULL,
+		0
 	};
+	Book* readBooks = NULL;
+	Result* results = NULL;
+	int running = 1;
 
-	unsigned char running = 0;
+	if (!Read(readBooks, &list.count))
+		ToList(&list, readBooks, list.count);
+	
 	while (running) {
 		DisplayMainMenu();
 		opt = ChooseOption(6);
 
 		switch (opt) {
 			case '1':
-				Book book;
 				printf("Enter book details:\n");
 				printf("Title: ");
 				scanf("%s", &book.title);
@@ -34,17 +54,17 @@ int main(void) {
 				break;
 
 			case '2':
-				int id;
+				id = 0;
 				printf("Enter book id: ");
-				printf("%d", &id);
+				scanf("%d", &id);
 				RemoveBook(&list, id);	
 				break;
 
 			case '3':
-				int id;
+				id = 0;
 				printf("Enter book id: ");
-				printf("%d", &id);
-				UpdateBook(&list, id);	
+				scanf("%d", &id);
+				UpdateBook(&list, id, updatedBook);	
 				break;
 
 			case '4':
@@ -53,14 +73,16 @@ int main(void) {
 
 			case '5':
 				// search book
+				search = EnterString();
+				results = SearchBook(&list, search);
+				DisplayResults(results, MAX_RESULTS);
+				free(results);
+				free(search);
 				break;
 
 			case '6':
-				// search author
-				break;
-
-			case '7':
-				running = 1;	
+				printf("Exiting...\n");
+				running = 0;	
 				break;
 		}
 	}

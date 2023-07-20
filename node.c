@@ -3,7 +3,8 @@
 
 Node* NewNode(Book book) {
 	Node* newNode = (Node*)malloc(sizeof(Node));
+	newNode->book = book;
 	newNode->next = NULL;
-	newNode->rpev = NULL;
+	newNode->prev = NULL;
 	return newNode;
 }
