@@ -12,7 +12,6 @@
 // TODO: (7/13/2023 7:31:11 PM) add symbols in telescope
 // https://github.com/nvim-telescope/telescope-symbols.nvim
 
-// ? How to make background transparent?
 int main(void) {
 
 	// TODO: (7/13/2023 3:28:22 PM) make randomizer for id
