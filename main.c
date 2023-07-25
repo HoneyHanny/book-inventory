@@ -9,15 +9,12 @@
 #include "tools.h"
 
 
-// TODO: (7/13/2023 7:31:11 PM) add symbols in telescope
-// https://github.com/nvim-telescope/telescope-symbols.nvim
+// TODO: (7/25/2023 2:20:07 PM) fix ID randomizer
 
 int main(void) {
 
 	// TODO: (7/13/2023 3:28:22 PM) make randomizer for id
 	srand(time(0));
-
-	// TODO: (6/21/2023 11:16:28 PM) read from file and add to list
 	
 	Book book, updatedBook;
 	int id;
